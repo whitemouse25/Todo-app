@@ -55,11 +55,3 @@ function sanitizeInput(input) {
     return div.innerHTML;
 }
 
-const sw = new URL('service-worker.js', import.meta.url);
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register(sw.href, {
-        scope: '/todo-app/'
-    })
-    .then(() => console.log('Service Worker Registered for scope:', sw.href, 'with', import.meta.url))
-    .catch(err => console.error('Service Worker Error:', err));
-}
