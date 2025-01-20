@@ -1,4 +1,4 @@
-name: Deploy Vanilla JavaScript PWA Checklist App
+name: Deploy Vanilla JavaScript PWA Checklists App
 
 on:
   push:
