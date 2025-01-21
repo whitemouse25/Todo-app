@@ -1,3 +1,6 @@
+// Import required functions from your firebase.js
+import { db, addDoc, updateDoc, getDocs, doc, collection } from './firebase.config';  // Adjust the path as needed
+
 const taskInput = document.getElementById('taskInput');
 const addTaskBtn = document.getElementById('addTaskBtn');
 const taskList = document.getElementById('taskList');
@@ -37,7 +40,6 @@ async function getTasksFromFirestore() {
     return data.docs;
 }
 
-// Remove Task on Click
 taskList.addEventListener('click', async (e) => {
     if (e.target.tagName === 'LI') {
         await removeTaskFromFirestore(e.target.id);
@@ -46,7 +48,7 @@ taskList.addEventListener('click', async (e) => {
 });
 
 async function removeTaskFromFirestore(taskId) {
-    await deleteDoc(doc(db, "todos", taskId));
+    await updateDoc(doc(db, "todos", taskId), { completed: true });  // Updated for completion instead of deletion
 }
 
 function sanitizeInput(input) {
@@ -54,4 +56,3 @@ function sanitizeInput(input) {
     div.textContent = input;
     return div.innerHTML;
 }
-
